@@ -1,16 +1,15 @@
-import React from 'react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import Routes from './routes';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import Routes from "./routes";
 
-import { Theme as theme } from './assets/styles/Theme';
-import LayoutContainer from './components/layout/Container';
+import { Theme as theme } from "./assets/styles/Theme";
+import LayoutContainer from "./components/layout/Container";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <LayoutContainer>
-        <CssBaseline/>
-        <Routes/>
+        <CssBaseline />
+        <Routes />
       </LayoutContainer>
     </ThemeProvider>
   );
