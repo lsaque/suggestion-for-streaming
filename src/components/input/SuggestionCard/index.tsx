@@ -1,11 +1,81 @@
-import React, { useState } from 'react';
-import { Box, Button, Grid, Paper, Rating, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Grid, Paper, Rating, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
 import ButtonSuggestionCard from '../ButtonSuggestionCard';
 
 interface ISuggestionCardProps {
   image?: string,
+}
+
+const api = {
+  id: 0,
+  name: "Netflix",
+  movies: [
+    {
+      id: 580489,
+      title: "Venom: Let There Be Carnage",
+      imageUrl: "https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
+      overview: "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
+      genres: [
+        {
+          id: 878,
+          name: "Ficção Científica"
+        },
+        {
+          id: 28,
+          name: "Ação"
+        },
+        {
+          id: 12,
+          name: "Aventura"
+        }
+      ],
+      voteAverage: 7.2
+    },
+    {
+      id: 580489,
+      title: "Venom: Let There Be Carnage",
+      imageUrl: "https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
+      overview: "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
+      genres: [
+        {
+          id: 878,
+          name: "Ficção Científica"
+        },
+        {
+          id: 28,
+          name: "Ação"
+        },
+        {
+          id: 12,
+          name: "Aventura"
+        }
+      ],
+      voteAverage: 7.2
+    },
+    {
+      id: 580489,
+      title: "Venom: Let There Be Carnage",
+      imageUrl: "https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
+      overview: "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
+      genres: [
+        {
+          id: 878,
+          name: "Ficção Científica"
+        },
+        {
+          id: 28,
+          name: "Ação"
+        },
+        {
+          id: 12,
+          name: "Aventura"
+        }
+      ],
+      voteAverage: 7.2
+    },
+  ]
 }
 
 const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
@@ -74,22 +144,18 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
               <Grid container
                 spacing={2}
                 sx={{
-                  // border: '1px solid green',
                   display: 'flex',
                   maxWidth: '86%',
-                  justifyContent: 'space-around',
+                  justifyContent: 'flex-start',
                   alignItems: 'center',
                 }}
               >
-                {[...Array(4)].map(item => (
-                  <Grid item xs={3} display="flex" justifyContent="center" alignItems="center">
-                    {/* <Box sx={{
-                      height: '200px',
-                      width: '170px',
-                      background: 'white',
-                      borderRadius: '6px',
-                    }} /> */}
-                    <ButtonSuggestionCard platformType={3} />
+                {api.movies.map(item => (
+                  <Grid item xs={3} display="flex" justifyContent="center" alignItems="center" key={item.id}>
+                    <ButtonSuggestionCard
+                      image={item.imageUrl}
+                      platformType={api.id}
+                    />
                   </Grid>
                 ))}
               </Grid>
