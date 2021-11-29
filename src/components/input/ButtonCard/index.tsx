@@ -4,12 +4,12 @@ import { Box, Button } from '@mui/material';
 import Globoplay from '../../../assets/images/streamers/globoplay.png';
 import SuggestionModal from '../../feedback/SuggestionModal';
 
-interface IButtonCardProps{
+interface IButtonCardProps {
   image?: string,
 }
 
 const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
-  
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleSuggestionSubmit = () => {
@@ -19,7 +19,7 @@ const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
   return (
     <React.Fragment>
       <Button
-        onClick={() => setModalOpen(true)} 
+        onClick={() => setModalOpen(true)}
         sx={{
           width: '100%',
           background: 'black',
@@ -28,7 +28,7 @@ const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
       >
         <Box
           sx={{
-            backgroundImage: `url(${ Globoplay })`,
+            backgroundImage: `url(${Globoplay})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'contain',
@@ -38,9 +38,9 @@ const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
           }}
         />
       </Button>
-      
-      <SuggestionModal 
-        isOpenModal={isModalOpen} 
+
+      <SuggestionModal
+        isOpenModal={isModalOpen}
         handleModalClose={() => handleSuggestionSubmit()}
       />
 

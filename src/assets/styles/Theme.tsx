@@ -17,6 +17,9 @@ export const Theme = createTheme({
       paper: '#171923'
     }
   },
+  shape: {
+    borderRadius: '5px',
+  },
   components: {
     MuiPaper: {
       variants: [
@@ -24,7 +27,7 @@ export const Theme = createTheme({
           props: { className: 'background' },
           style: {
             position: 'fixed',
-            height:'100vh',
+            height: '100vh',
             width: '100vw',
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
