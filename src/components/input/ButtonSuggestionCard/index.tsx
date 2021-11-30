@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Avatar, Box, Button, Chip, useTheme } from '@mui/material';
 
 import netflixIcon from '../../../assets/images/streamers/icons/netflix.png';
@@ -7,8 +7,8 @@ import globoPlayIcon from '../../../assets/images/streamers/icons/globoPlay.png'
 import SuggestionModal from '../../feedback/SuggestionModal';
 
 interface IButtonSuggestionCardProps {
-  image?: string,
-  platformType?: 1 | 2 | 3,
+  image: string,
+  platformType: 1 | 2 | 3 | number,
 }
 
 const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, platformType }) => {
@@ -17,29 +17,25 @@ const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, pla
   const handleSuggestionSubmit = () => setModalOpen(false);
   const theme = useTheme();
 
-  const background = 'https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg';
   let platform;
   let label;
   let color;
 
   switch (platformType) {
-    case 1:
+    case 0:
       platform = netflixIcon;
       label = 'Netflix';
       color = theme.palette.primary.main;
       break;
-    case 2:
+    case 1:
       platform = primeVideoIcon;
       label = 'Prime Video';
       color = theme.palette.info.main;
       break;
-    case 3:
+    case 2:
       platform = globoPlayIcon;
       label = 'Globoplay';
       color = '#fc4626';
-      break;
-
-    default:
       break;
   }
 
@@ -58,7 +54,7 @@ const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, pla
       >
         <Box
           sx={{
-            backgroundImage: `url(${background})`,
+            backgroundImage: `url(${image})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
