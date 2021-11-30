@@ -1,35 +1,44 @@
-import React, { useState } from 'react';
-import { AppBar, Box, Drawer, Grid, List, ListItem, Toolbar, IconButton } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import {
+  AppBar,
+  Box,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  Toolbar,
+  IconButton,
+} from "@mui/material";
 
-import Search from '@mui/icons-material/Search';
-import Tv from '@mui/icons-material/Tv';
-import Apps from '@mui/icons-material/GridViewRounded';
-import World from '@mui/icons-material/TravelExplore';
-import Timeline from '@mui/icons-material/Timeline';
-import Record from '@mui/icons-material/RadioButtonChecked';
-import Settings from '@mui/icons-material/Settings';
+import Search from "@mui/icons-material/Search";
+import Tv from "@mui/icons-material/Tv";
+import Apps from "@mui/icons-material/GridViewRounded";
+import World from "@mui/icons-material/TravelExplore";
+import Timeline from "@mui/icons-material/Timeline";
+import Record from "@mui/icons-material/RadioButtonChecked";
+import Settings from "@mui/icons-material/Settings";
 
-import { ReactComponent as Logo } from '../../assets/images/logo.svg';
-import ButtonCard from '../../components/input/ButtonCard';
-import SuggestionCard from '../../components/input/SuggestionCard';
+import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import ButtonCard from "../../components/input/ButtonCard";
+import SuggestionCard from "../../components/input/SuggestionCard";
 
-import netflix from '../../assets/images/streamers/netflix.png';
-import globoplay from '../../assets/images/streamers/globoplay.png';
-import primeVideo from '../../assets/images/streamers/primeVideo.png';
+import netflix from "../../assets/images/streamers/netflix.png";
+import globoplay from "../../assets/images/streamers/globoplay.png";
+import primeVideo from "../../assets/images/streamers/primeVideo.png";
 
-import claroMusica from '../../assets/images/streamers/claroMusica.png';
-import claroVideo from '../../assets/images/streamers/claroVideo.png';
-import combate from '../../assets/images/streamers/combate.png';
-import conmebol from '../../assets/images/streamers/conmebol.png';
-import facebookWatch from '../../assets/images/streamers/facebookWatch.png';
-import hbo from '../../assets/images/streamers/hbo.png';
-import paramount from '../../assets/images/streamers/paramount.png';
-import plutoTv from '../../assets/images/streamers/plutoTv.png';
-import premiere from '../../assets/images/streamers/premiere.png';
-import telecine from '../../assets/images/streamers/telecine.png';
+import claroMusica from "../../assets/images/streamers/claroMusica.png";
+import claroVideo from "../../assets/images/streamers/claroVideo.png";
+import combate from "../../assets/images/streamers/combate.png";
+import conmebol from "../../assets/images/streamers/conmebol.png";
+import facebookWatch from "../../assets/images/streamers/facebookWatch.png";
+import hbo from "../../assets/images/streamers/hbo.png";
+import paramount from "../../assets/images/streamers/paramount.png";
+import plutoTv from "../../assets/images/streamers/plutoTv.png";
+import premiere from "../../assets/images/streamers/premiere.png";
+import telecine from "../../assets/images/streamers/telecine.png";
 
-import { getMovies } from '../../services/lib/methods';
-import { StreamingPlatform } from '../../types/streamingPlatform';
+import { getMovies } from "../../services/lib/methods";
+import { StreamingPlatform } from "../../types/streamingPlatform";
 
 const drawerWidth = 80;
 
@@ -113,9 +122,11 @@ const thirdGalleryImages = [
 const Home: React.FC = () => {
   const [apiData, setApiData] = useState<StreamingPlatform[]>([]);
 
-  getMovies().then(response => {
-    setApiData(response)
-  })
+  useEffect(() => {
+    getMovies().then((response) => {
+      setApiData(response);
+    });
+  }, []);
 
   const firstGalleryImages = [
     {

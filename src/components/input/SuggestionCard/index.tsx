@@ -11,39 +11,82 @@ interface ISuggestionCardProps {
   image?: string,
 }
 
-const api = {
-  id: 0,
-  name: "Netflix",
-  movies: [] as Movie[],
-}
-
 interface Storage {
   data: Movie,
   platformId: number,
 }
 
-const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
+
+const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
 
   const storage: Storage = JSON.parse(localStorage.getItem('suggestion') || '{}');
   const { data, platformId } = storage;
   const [id, setId] = useState(platformId);
+  const [title, setTitle] = useState<String>(data.title);
+  const [average, setAverage] = useState<number>(0);
+  const [isSoccer, setIsSoccer] = useState<boolean>(false);
+  const [api, setApi] = useState<RecommendedMovie[]>([] as RecommendedMovie[]);
 
-  let movieProps = {
-    idPlatform: id,
-    idVideo: data.id,
-    genresId: data.genres.map(e => e.id).join(),
-  } as RecommendedMovieProps
+  async function addRecommendedMovie(
+    props: RecommendedMovie,
+    soccer: boolean
+  ): Promise<RecommendedMovie[]> {
+    let movies = [] as RecommendedMovie[];
+
+    if (!soccer) {
+      setTitle(props.movie.title);
+      setAverage(props.movie.voteAverage);
+      let count = 0;
+
+      do {
+        await getRecommendedMovie(props).then((response) => {
+          const recommended = {
+            idPlatform: props.idPlatform,
+            movie: response,
+          } as RecommendedMovie;
+
+          movies.push(recommended);
+        });
+
+        count++;
+
+        if (count === 3) {
+          props.movie.id = movies[2].movie.id;
+        } else props.idPlatform = (props.idPlatform + 1) % 3;
+      } while (count < 4);
+    } else {
+      setTitle("Corinthians 2x0 Santos");
+      setAverage(9.8);
+      let ids = [3, 1, 4, 0];
+      let moviesResponse = [] as Movie[];
+
+      await listRecommendedMovies().then((response) => {
+        moviesResponse = response;
+      });
+
+      for (let i = 0; i < moviesResponse.length; i++) {
+        const soccerMovie = {
+          idPlatform: ids[i],
+          movie: moviesResponse[i],
+        } as RecommendedMovie;
+
+        movies.push(soccerMovie);
+      }
+    }
+
+    return movies;
+  }
 
   useEffect(() => {
-    for (let i = 0; i < 4; i++) {
-      setId(state => (state + 1) % 3)
+    let movieProps = {
+      idPlatform: platformId,
+      movie: data,
+    } as RecommendedMovie;
 
-      getRecommendedMovie(movieProps).then((response) => {
-        api.movies.push(response);
-        // console.log(response);
-      });
-    }
-  }, [])
+    addRecommendedMovie(movieProps, isSoccer).then((response) => {
+      setApi(response);
+    });
+  }, [storage]);
 
   return (
     <Paper
