@@ -18,7 +18,10 @@ export const Theme = createTheme({
     }
   },
   shape: {
-    borderRadius: '5px',
+    borderRadius: 5,
+  },
+  typography: {
+    fontFamily: 'Poppins',
   },
   components: {
     MuiPaper: {

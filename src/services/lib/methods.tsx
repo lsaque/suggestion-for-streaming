@@ -35,7 +35,7 @@ export async function getMovies(): Promise<StreamingPlatform[]> {
   return streamingPlatforms;
 }
 
-export async function getRecommendedMovie(props: RecommendedMovieProps) {
+export async function getRecommendedMovie(props: RecommendedMovieProps): Promise<Movie> {
   let recommendedMovie = {} as Movie;
   let status = false;
 
@@ -44,6 +44,8 @@ export async function getRecommendedMovie(props: RecommendedMovieProps) {
   });
 
   if (status) {
+    console.log(`${BASE_URL}/movie/recommendMovie/${props.idPlatform}/${props.idVideo}/${props.genresId}`);
+
     await axiosClient
       .get<Movie>(
         `${BASE_URL}/movie/recommendMovie/${props.idPlatform}/${props.idVideo}/${props.genresId}`

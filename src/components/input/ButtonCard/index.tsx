@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 
-import Globoplay from '../../../assets/images/streamers/globoplay.png';
 import SuggestionModal from '../../feedback/SuggestionModal';
+import { StreamingPlatform } from '../../../types/streamingPlatform';
 
 interface IButtonCardProps {
   image?: string,
+  data: StreamingPlatform
 }
 
-const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
+const ButtonCard: React.FC<IButtonCardProps> = ({ image, data }) => {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -28,7 +29,7 @@ const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
       >
         <Box
           sx={{
-            backgroundImage: `url(${Globoplay})`,
+            backgroundImage: `url(${image})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'contain',
@@ -42,6 +43,7 @@ const ButtonCard: React.FC<IButtonCardProps> = ({ image }) => {
       <SuggestionModal
         isOpenModal={isModalOpen}
         handleModalClose={() => handleSuggestionSubmit()}
+        data={data}
       />
 
     </React.Fragment>

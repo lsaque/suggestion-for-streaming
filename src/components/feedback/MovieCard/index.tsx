@@ -1,74 +1,109 @@
-import React from 'react';
-import { Card, Box, Avatar, Stack, Typography, Chip } from '@mui/material';
-import { Genre } from '../../../types/genre';
+import React, { useState } from "react";
+import { Card, Box, Avatar, Stack, Typography, Chip, useTheme } from "@mui/material";
+import { Movie } from "../../../types/movie";
 
 interface IMovieCardProps {
-  url: string;
-  title: string;
-  description: string;
-  category?: Genre[];
+  data: Movie,
+  platformId: number,
 }
 
-const MovieCard: React.FC<IMovieCardProps> = ({ url, title, description, category }) => {
+const MovieCard: React.FC<IMovieCardProps> = ({ data, platformId }) => {
+
+  const [isFocused, setFocus] = useState(false);
+  const theme = useTheme();
+  const { genres, imageUrl, overview, title } = data;
+
+  const saveStorage = () => {
+    const newData = {
+      data: data,
+      platformId: platformId,
+    }
+    localStorage.setItem('suggestion', JSON.stringify(newData))
+  }
 
   return (
     <Card
-    sx={{
-      marginTop: '20px',
-      //border: '1px solid red', 
-      background: '#0C0C10',
-      borderRadius: '10px'
-    }}
+      onClick={() => {
+        setFocus(!isFocused)
+        saveStorage();
+      }}
+      sx={{
+        marginTop: "20px",
+        background: "#0C0C10",
+        borderRadius: "10px",
+        height: '100%',
+        border: isFocused ? `2px solid ${theme.palette.primary.main}` : `2px solid #0C0C10`,
+      }}
     >
-      <Box sx={{
-        p: 2.5,
-        display: 'flex',
-        cursor: 'pointer'
-      }}>
-        <Avatar sx={{
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          width: 100,
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          cursor: "pointer",
           height: '100%',
-          borderRadius: '5px',
-          boxShadow: '8px 4px 13px rgba(0,0,0,0.38)',
-          display: 'flex',
-          justifyContent: 'flex-start'
-        }} variant="rounded" src={url} alt={title} />
+          width: '100%',
+        }}
+      >
+        <Avatar
+          sx={{
+            width: '100px',
+            height: '100%',
+            borderRadius: "5px",
+            boxShadow: "8px 4px 13px rgba(0,0,0,0.38)",
+            display: "flex",
+            justifyContent: "flex-start",
+          }}
+          variant="rounded"
+          src={imageUrl}
+          alt={title}
+        />
 
-        <Stack sx={{
-          //backgroundColor: 'red',
-          paddingLeft: '30px',
-        }} spacing={0.5}>
-          <Typography sx={{ fontFamily: 'Poppins' }} variant="h5" component="h5">{title}</Typography >
-          <Typography sx={{ fontFamily: 'Poppins', opacity: 0.5 }}>{description}</Typography >
-          <Stack
+        <Stack marginLeft="30px" spacing={0.5}
+          sx={{
+            maxWidth: '385px',
+            width: '100%',
+          }}
+        >
+          <Typography variant="h5" component="h5">{title}</Typography>
+          <Typography
+            color="secondary"
             sx={{
-              paddingTop: '20px',
               maxWidth: '100%',
-              border: '1px solid red', 
+              height: '100%',
+
+              overflow: "hidden",
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              whiteSpace: "pre-line",
+              textOverflow: "ellipsis",
+              WebkitLineClamp: 1,
             }}
+          >
+            {overview}
+          </Typography>
+          <Stack
+            sx={{ paddingTop: "20px" }}
             direction="row"
             spacing={1}
           >
-            {category?.map(item => {
-              <Chip  sx={{ fontFamily: 'Poppins' }} label={item.name} key={item.id} />
-            })}
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Ação" />
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Aventura" />
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Terror" />
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Drama" />
-
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Terror" />
-            <Chip sx={{ fontFamily: 'Poppins' }} label="Drama" />
-            
-            <Chip sx={{ fontFamily: 'Poppins' }} label="+2" />
+            <Box>
+              {genres.map((item, index) => (
+                <Chip
+                  label={item.name}
+                  key={index}
+                  sx={{
+                    marginBottom: '7px',
+                    backgroundColor: '#1b1b22',
+                    marginRight: '7px'
+                  }}
+                />
+              ))}
+            </Box>
           </Stack>
         </Stack>
       </Box>
     </Card>
-  )
-}
+  );
+};
 
 export default MovieCard;
