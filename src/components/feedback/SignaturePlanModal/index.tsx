@@ -2,12 +2,17 @@ import React from 'react';
 import { Box, Button, Dialog, DialogContent, DialogContentText, Grid, Typography } from '@mui/material';
 
 import shadow from '../../../assets/images/shadow.png';
+
+import netflix from '../../../assets/images/streamers/netflix-white.png';
 import primeVideo from '../../../assets/images/streamers/signature/primeVideo.png';
+import globoplay from '../../../assets/images/streamers/globoplay.png';
+import premiere from '../../../assets/images/streamers/premiere.png';
+import conmebol from '../../../assets/images/streamers/conmebol.png';
 
 interface ISignaturePlanModalProps {
   isOpenModal: boolean,
   handleModalClose?: React.MouseEventHandler<HTMLButtonElement>,
-  platformId: 0 | 1 | 2 | 3 | number,
+  platformId: 0 | 1 | 2 | 3 | 4 | number,
   movieTitle: string,
 }
 
@@ -20,22 +25,30 @@ const SignaturePlanModal: React.FC<ISignaturePlanModalProps> = ({ isOpenModal, h
 
   switch (platformId) {
     case 0:
-      // platform = netflixIcon;
-      label = 'Netflix';
-      color = '#F1252E';
-      preco = '10,00';
+      platform = netflix;
+      color = '#F62717';//'#f4f7f3'
+      preco = '29,99';
       break;
     case 1:
       platform = primeVideo;
       label = 'Prime Video';
       color = "#439CD6";
-      preco = '10,00';
+      preco = '15,99';
       break;
     case 2:
-      // platform = globoPlayIcon;
-      label = 'Globoplay';
+      platform = globoplay;
       color = '#fc4626';
-      preco = '10,00';
+      preco = '9,99';
+      break;
+    case 3:
+      platform = premiere;
+      color = '#338C2E';
+      preco = '29,99';
+      break;
+    case 4:
+      platform = conmebol;
+      color = '#05589C';
+      preco = '49,99';
       break;
   }
 
@@ -158,14 +171,17 @@ const SignaturePlanModal: React.FC<ISignaturePlanModalProps> = ({ isOpenModal, h
                   p: 1.5,
                   color: '#FFF',
                   textTransform: 'capitalize',
-                  marginTop: '5px',
+                  marginTop: '8px',
                   border: `1px solid transparent`,
                   '&:hover': {
                     opacity: 0.6,
                     background: 'transparent',
+                    backgroundColor: 'black',
                     border: `1px solid ${color}`
                   }
                 }}
+                onClick={handleModalClose}
+                variant="contained"
               >
                 Cancelar
               </Button>
