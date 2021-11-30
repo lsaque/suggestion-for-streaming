@@ -4,14 +4,15 @@ import { Avatar, Box, Button, Chip, useTheme } from '@mui/material';
 import netflixIcon from '../../../assets/images/streamers/icons/netflix.png';
 import primeVideoIcon from '../../../assets/images/streamers/icons/primeVideo.png';
 import globoPlayIcon from '../../../assets/images/streamers/icons/globoPlay.png';
-import SuggestionModal from '../../feedback/SuggestionModal';
+import SignaturePlanModal from '../../feedback/SignaturePlanModal';
 
 interface IButtonSuggestionCardProps {
   image: string,
   platformType: 1 | 2 | 3 | number,
+  movieTitle: string,
 }
 
-const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, platformType }) => {
+const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, platformType, movieTitle }) => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const handleSuggestionSubmit = () => setModalOpen(false);
@@ -87,7 +88,10 @@ const ButtonSuggestionCard: React.FC<IButtonSuggestionCardProps> = ({ image, pla
         </Box>
       </Button>
 
-      <SuggestionModal
+      <SignaturePlanModal
+        // platformId={platformType}
+        platformId={1}
+        movieTitle={movieTitle}
         isOpenModal={isModalOpen}
         handleModalClose={() => handleSuggestionSubmit()}
       />

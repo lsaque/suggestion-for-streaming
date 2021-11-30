@@ -130,6 +130,7 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
                   <ButtonSuggestionCard
                     image={item.imageUrl}
                     platformType={api.id}
+                    movieTitle={item.title}
                   />
                 </Grid>
               ))}
