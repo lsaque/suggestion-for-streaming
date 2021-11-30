@@ -14,16 +14,12 @@ interface ISuggestionCardProps {
   image?: string;
 }
 
-const api = {
-  recommendedMovies: [] as RecommendedMovie[],
-};
-
 interface Storage {
   data: Movie;
   platformId: number;
 }
 
-const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
+const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
   const storage: Storage = JSON.parse(
     localStorage.getItem("suggestion") || "{}"
   );
@@ -33,6 +29,7 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
   const [title, setTitle] = useState<String>(data.title);
   const [average, setAverage] = useState<number>(0);
   const [isSoccer, setIsSoccer] = useState<boolean>(false);
+  const [api, setApi] = useState<RecommendedMovie[]>([] as RecommendedMovie[]);
 
   async function addRecommendedMovie(
     props: RecommendedMovie,
@@ -91,9 +88,9 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
     } as RecommendedMovie;
 
     addRecommendedMovie(movieProps, isSoccer).then((response) => {
-      api.recommendedMovies = response;
+      setApi(response);
     });
-  }, []);
+  }, [storage]);
 
   return (
     <Paper
@@ -178,7 +175,7 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              {api.recommendedMovies.map((item, index) => (
+              {api.map((item, index) => (
                 <Grid
                   item
                   xs={3}

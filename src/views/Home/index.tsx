@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -122,9 +122,11 @@ const thirdGalleryImages = [
 const Home: React.FC = () => {
   const [apiData, setApiData] = useState<StreamingPlatform[]>([]);
 
-  getMovies().then((response) => {
-    setApiData(response);
-  });
+  useEffect(() => {
+    getMovies().then((response) => {
+      setApiData(response);
+    });
+  }, []);
 
   const firstGalleryImages = [
     {
