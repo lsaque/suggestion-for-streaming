@@ -15,7 +15,19 @@ import SuggestionCard from '../../components/input/SuggestionCard';
 
 import netflix from '../../assets/images/streamers/netflix.png';
 import globoplay from '../../assets/images/streamers/globoplay.png';
-import primeVideo from '../../assets/images/streamers/prime_video.png';
+import primeVideo from '../../assets/images/streamers/primeVideo.png';
+
+import claroMusica from '../../assets/images/streamers/claroMusica.png';
+import claroVideo from '../../assets/images/streamers/claroVideo.png';
+import combate from '../../assets/images/streamers/combate.png';
+import conmebol from '../../assets/images/streamers/conmebol.png';
+import facebookWatch from '../../assets/images/streamers/facebookWatch.png';
+import hbo from '../../assets/images/streamers/hbo.png';
+import paramount from '../../assets/images/streamers/paramount.png';
+import plutoTv from '../../assets/images/streamers/plutoTv.png';
+import premiere from '../../assets/images/streamers/premiere.png';
+import telecine from '../../assets/images/streamers/telecine.png';
+
 import { getMovies } from '../../services/lib/methods';
 import { StreamingPlatform } from '../../types/streamingPlatform';
 
@@ -55,46 +67,46 @@ const menuItems = [
 const secondGalleryImages = [
   {
     key: 1,
-    image: primeVideo,
+    image: facebookWatch,
   },
   {
     key: 2,
-    image: primeVideo,
+    image: plutoTv,
   },
   {
     key: 3,
-    image: primeVideo,
+    image: telecine,
   },
   {
     key: 4,
-    image: primeVideo,
+    image: hbo,
   },
 ]
 
 const thirdGalleryImages = [
   {
     key: 1,
-    image: primeVideo,
+    image: premiere,
   },
   {
     key: 2,
-    image: primeVideo,
+    image: conmebol,
   },
   {
     key: 3,
-    image: primeVideo,
+    image: combate,
   },
   {
     key: 4,
-    image: primeVideo,
+    image: paramount,
   },
   {
     key: 5,
-    image: primeVideo,
+    image: claroVideo,
   },
   {
     key: 6,
-    image: primeVideo,
+    image: claroMusica,
   },
 ]
 
