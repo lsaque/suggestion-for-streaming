@@ -71,6 +71,33 @@ const secondGalleryImages = [
   },
 ]
 
+const thirdGalleryImages = [
+  {
+    key: 1,
+    image: primeVideo,
+  },
+  {
+    key: 2,
+    image: primeVideo,
+  },
+  {
+    key: 3,
+    image: primeVideo,
+  },
+  {
+    key: 4,
+    image: primeVideo,
+  },
+  {
+    key: 5,
+    image: primeVideo,
+  },
+  {
+    key: 6,
+    image: primeVideo,
+  },
+]
+
 const Home: React.FC = () => {
   const [apiData, setApiData] = useState<StreamingPlatform[]>([]);
 
@@ -95,6 +122,20 @@ const Home: React.FC = () => {
       data: apiData[2],
     },
   ]
+
+  const renderSuggestion = (
+    <Grid item xs={12}>
+      <SuggestionCard />
+    </Grid>
+  )
+
+  const renderBeforeSuggestion = (
+    thirdGalleryImages.map((item, index) => (
+      <Grid item xs={12} md={2} key={index}>
+        <ButtonCard image={item.image} data={apiData[1]} />
+      </Grid>
+    ))
+  )
 
   return (
     <Box display="flex">
@@ -149,9 +190,7 @@ const Home: React.FC = () => {
       }}>
 
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <SuggestionCard />
-          </Grid>
+          {(JSON.parse(localStorage.getItem('suggestion')!)) === null ? null : renderSuggestion}
 
           {firstGalleryImages.map((item, index) => (
             <Grid item xs={12} md={4} key={index}>
@@ -165,11 +204,7 @@ const Home: React.FC = () => {
             </Grid>
           ))}
 
-          {/* {[...Array(6)].map((item, index) => (
-            <Grid item xs={12} md={2} key={index}>
-              <ButtonCard />
-            </Grid>
-          ))} */}
+          {(JSON.parse(localStorage.getItem('suggestion')!)) === null ? renderBeforeSuggestion : null}
 
         </Grid>
       </Box>
