@@ -62,6 +62,15 @@ const SuggestionModal: React.FC<ISuggestionModalProps> = ({ isOpenModal, handleM
           marginRight: '20px',
           fontFamily: 'Poppins'
         }} onClick={handleModalClose} variant="contained">Assistir</Button>
+          <MoviesList
+            url="dsds"
+            title="The Jungle Lorem Ipsum Sei la das quantas"
+            description="Lorem Ipsum description about the movie pipipi popopo vamo que vamo sei la deu..."
+          />
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleModalClose} variant="contained">Assistir</Button>
       </DialogActions>
     </Dialog>
   );
