@@ -1,31 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Box, Grid, Paper, Rating, Typography } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import React, { useEffect, useState } from 'react';
+import { Box, Grid, Paper, Rating, Typography } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
-import ButtonSuggestionCard from "../ButtonSuggestionCard";
-import { Movie } from "../../../types/movie";
-import {
-  getRecommendedMovie,
-  listRecommendedMovies,
-} from "../../../services/lib/methods";
-import { RecommendedMovie } from "../../../types/recommendedMovie";
+import ButtonSuggestionCard from '../ButtonSuggestionCard';
+import { Movie } from '../../../types/movie';
+import { getRecommendedMovie } from '../../../services/lib/methods';
+import { RecommendedMovieProps } from '../../../types/recommendedMovieProps';
 
 interface ISuggestionCardProps {
-  image?: string;
+  image?: string,
 }
 
 interface Storage {
-  data: Movie;
-  platformId: number;
+  data: Movie,
+  platformId: number,
 }
 
+
 const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
-  const storage: Storage = JSON.parse(
-    localStorage.getItem("suggestion") || "{}"
-  );
 
+  const storage: Storage = JSON.parse(localStorage.getItem('suggestion') || '{}');
   const { data, platformId } = storage;
-
+  const [id, setId] = useState(platformId);
   const [title, setTitle] = useState<String>(data.title);
   const [average, setAverage] = useState<number>(0);
   const [isSoccer, setIsSoccer] = useState<boolean>(false);
@@ -104,21 +100,21 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
             url(${data.imageUrl}
           )
         `,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundBlendMode: "",
-        width: "100%",
-        height: "250px",
-        borderRadius: "6px",
-        "&::before": {
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundBlendMode: '',
+        width: '100%',
+        height: '250px',
+        borderRadius: '6px',
+        '&::before': {
           content: '""',
-          backdropFilter: "blur(15px)",
-          height: "250px",
-          position: "absolute",
-          width: "100%",
-          maxWidth: "1408px",
-          borderRadius: "6px",
+          backdropFilter: 'blur(15px)',
+          height: '250px',
+          position: 'absolute',
+          width: '100%',
+          maxWidth: '1408px',
+          borderRadius: '6px',
         },
       }}
     >
@@ -126,68 +122,58 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
         container
         position="absolute"
         sx={{
-          width: "100%",
-          maxWidth: "1408px",
-          height: "250px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '100%',
+          maxWidth: '1408px',
+          height: '250px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Grid item xs={12} md={6} lg={4}>
-          <div style={{ marginLeft: "52px" }}>
-            <Typography variant="h4" component="h4">
-              Porque você assistiu
-            </Typography>
+          <div style={{ marginLeft: '52px' }}>
+            <Typography variant="h4" component="h4">Porque você assistiu</Typography>
             <Typography variant="h3" gutterBottom component="h3" noWrap>
-              <b>{title}</b>
-              {/* <b>Corinthians 2x0 Santos</b> */}
+              <b>{data.title}</b>
             </Typography>
 
             <Grid item display="inline-flex">
               <Rating
                 name="text-feedback"
-                value={average / 2}
+                value={data.voteAverage / 2}
                 readOnly
                 precision={0.5}
-                emptyIcon={<StarIcon color="secondary" sx={{ opacity: 0.2 }} />}
+                emptyIcon={
+                  <StarIcon color="secondary" sx={{ opacity: 0.2 }} />
+                }
               />
-              <Box sx={{ ml: 2 }}>({average})</Box>
+              <Box sx={{ ml: 2 }}>({data.voteAverage})</Box>
             </Grid>
           </div>
+
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              marginRight: "40px",
-            }}
-          >
-            <Grid
-              container
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginRight: '40px'
+          }}>
+            <Grid container
               spacing={2}
               sx={{
-                display: "flex",
-                maxWidth: "86%",
-                justifyContent: "flex-start",
-                alignItems: "center",
+                display: 'flex',
+                maxWidth: '86%',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
               }}
             >
-              {api.map((item, index) => (
-                <Grid
-                  item
-                  xs={3}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  key={index}
-                >
+              {api.movies.map((item, index) => (
+                <Grid item xs={3} display="flex" justifyContent="center" alignItems="center" key={index}>
                   <ButtonSuggestionCard
-                    image={item.movie.imageUrl}
-                    platformType={item.idPlatform}
-                    movieTitle={item.movie.title}
+                    image={item.imageUrl}
+                    platformType={api.id}
+                    movieTitle={item.title}
                   />
                 </Grid>
               ))}
@@ -197,6 +183,6 @@ const SuggestionCard: React.FC<ISuggestionCardProps> = () => {
       </Grid>
     </Paper>
   );
-};
+}
 
 export default SuggestionCard;

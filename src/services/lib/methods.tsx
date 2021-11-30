@@ -4,7 +4,7 @@ import axiosClient from "../apiClient";
 
 import { BASE_URL, API_KEY } from "../../utils/constants/apiConstants";
 import { Movie } from "../../types/movie";
-import { RecommendedMovie } from "../../types/recommendedMovie";
+import { RecommendedMovieProps } from "../../types/recommendedMovieProps";
 
 async function getInit(): Promise<boolean> {
   let status = false;
@@ -35,9 +35,7 @@ export async function getMovies(): Promise<StreamingPlatform[]> {
   return streamingPlatforms;
 }
 
-export async function getRecommendedMovie(
-  props: RecommendedMovie
-): Promise<Movie> {
+export async function getRecommendedMovie(props: RecommendedMovieProps): Promise<Movie> {
   let recommendedMovie = {} as Movie;
   let status = false;
 
@@ -46,26 +44,15 @@ export async function getRecommendedMovie(
   });
 
   if (status) {
-    const genresString = props.movie.genres.map((g) => g.id).join();
+    console.log(`${BASE_URL}/movie/recommendMovie/${props.idPlatform}/${props.idVideo}/${props.genresId}`);
+
     await axiosClient
       .get<Movie>(
-        `${BASE_URL}/movie/recommendMovie/${props.idPlatform}/${props.movie.id}/${genresString}`
+        `${BASE_URL}/movie/recommendMovie/${props.idPlatform}/${props.idVideo}/${props.genresId}`
       )
       .then((response) => {
         recommendedMovie = response.data;
       });
   }
   return recommendedMovie;
-}
-
-export async function listRecommendedMovies(): Promise<Movie[]> {
-  let movies = [] as Movie[];
-
-  await axiosClient
-    .get<Movie[]>(`${BASE_URL}/movie/listRecommendedMovies`)
-    .then((response) => {
-      movies = response.data;
-    });
-
-  return movies;
 }
