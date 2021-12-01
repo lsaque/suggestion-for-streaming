@@ -9,7 +9,7 @@
 
 ## 🚀 Tecnologias
 
-Tecnologias que usei para desenvolver este cliente web
+Tecnologias que usamos para desenvolver este cliente web
 
 - [ReactJS](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
