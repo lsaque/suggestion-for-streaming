@@ -23,9 +23,9 @@ Tecnologias que usei para desenvolver este cliente web
 ## 💾 Outras Tecnologias
 
 - [Canva](https://www.canva.com/pt_br/)
-- [Whimsical](https://whimsical.com/)
 - [Figma](https://www.figma.com/)
 - [Devdocs](https://devdocs.io/)
+- [Whimsical](https://whimsical.com/)
 
 ## 💻 Começando
 
@@ -45,7 +45,7 @@ $ git clone https://github.com/lsaque/suggestion-for-streaming.git && cd suggest
 # Install the dependencies
 $ yarn
 
-# Be sure the file 'src/services/api.ts' have the IP to your API
+# Be sure the file 'src/services/apiClient.tsx' have the IP to your API
 
 # Start the client
 $ yarn start
