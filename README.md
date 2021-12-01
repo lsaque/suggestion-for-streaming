@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+## 🌊 Watergate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div  align="center">
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/lsaque/suggestion-for-streaming/blob/master/github/img1.png"><img alt="Watergate" title="#delicinha" src="https://github.com/lsaque/suggestion-for-streaming/blob/master/github/img1.png" width="800px" style="max-width:100%;"></a>
+</div>
 
-## Available Scripts
+## 🗃 Brainstorming
+- [Notion](https://congruous-washer-e2c.notion.site/Watergate-675a005d75494de78a7fae60c1d7a8aa)
 
-In the project directory, you can run:
+## 🚀 Tecnologias
 
-### `yarn start`
+Tecnologias que usei para desenvolver este cliente web
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [Axios](https://github.com/axios/axios)
+- [Eslint](https://eslint.org/)
+- [Emotion](https://emotion.sh/docs/introduction)
+- [Mui](https://mui.com/)
+- [Formik](https://formik.org/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 💾 Outras Tecnologias
 
-### `yarn test`
+- [Canva](https://www.canva.com/pt_br/)
+- [Whimsical](https://whimsical.com/)
+- [Figma](https://www.figma.com/)
+- [Devdocs](https://devdocs.io/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💻 Começando
 
-### `yarn build`
+### Requisitos
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Ter este aplicativo [API] em execução
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Clone o projeto e acesse a pasta**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+$ git clone https://github.com/lsaque/suggestion-for-streaming.git && cd suggestion-for-streaming
+```
 
-### `yarn eject`
+**Siga os passos abaixo**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+# Install the dependencies
+$ yarn
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Be sure the file 'src/services/api.ts' have the IP to your API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Start the client
+$ yarn start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🤔 Como contribuir
 
-## Learn More
+**Faça um fork deste repositório**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Fork using GitHub official command line
+# If you don't have the GitHub CLI, use the web site to do that.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+$ gh repo fork EliasGcf/gobarber-web
+```
+
+**Siga os passos abaixo**
+
+```bash
+# Clone seu fork
+$ git clone your-fork-url && cd suggestion-for-streaming
+
+# Crie uma branch com o seu recurso
+$ git checkout -b my-feature
+
+# Faça o commit com suas alterações
+$ git commit -m 'feat: Meu novo recurso'
+
+# Envie o código para sua remote branch
+$ git push origin my-feature
+```
+
+Depois que sua solicitação pull for mesclada, você pode excluir seu branch
+
+## 📝 Licença
+
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
+
+## 🌊 Team
+
+Isaque José de Souza - RM:86424
+Luigi Gevaerd Braghittoni - RM:86326 
+Davi Athanazio Quental - RM:85868
+Igor Pereira da Silva - RM:86190
+João Victor Marks de Farias Delgado - RM:84596
+
+---
+
+Made with 💜 by Watergate
