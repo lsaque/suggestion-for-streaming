@@ -86,11 +86,11 @@ Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](
 
 ## 🌊 Team
 
-Isaque José de Souza - RM:86424
-Luigi Gevaerd Braghittoni - RM:86326 
-Davi Athanazio Quental - RM:85868
-Igor Pereira da Silva - RM:86190
-João Victor Marks de Farias Delgado - RM:84596
+- Isaque José de Souza - RM: 86424
+- Luigi Gevaerd Braghittoni - RM: 86326 
+- Davi Athanazio Quental - RM: 85868
+- Igor Pereira da Silva - RM: 86190
+- João Victor Marks de Farias Delgado - RM: 84596
 
 ---
 
